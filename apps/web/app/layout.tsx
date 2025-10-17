@@ -1,6 +1,8 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SocketProvider } from "../context/SocketProvider";
+import { ProgressBar } from '@/components/progress-bar';
 import "./globals.css";
 
 const geistSans = localFont({
@@ -25,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ProgressBar />
         <SocketProvider>{children}</SocketProvider>
       </body>
     </html>

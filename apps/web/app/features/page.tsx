@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 import { FeatureCard } from "@/components/feature-card";
 import { features } from "@/lib/features-data";
+import { FloatingParticles } from "@/components/floating-particles";
 
 export default function FeaturesPage() {
   return (
@@ -27,8 +28,8 @@ export default function FeaturesPage() {
         </div>
 
         <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto">
-          Discover the powerful features that make NextChat the modern communication platform 
-          for communities, friends, and teams.
+          Discover the powerful features that make NextChat the modern
+          communication platform for communities, friends, and teams.
         </p>
 
         {/* Features Grid */}
@@ -46,7 +47,10 @@ export default function FeaturesPage() {
 
         {/* Go Home Button */}
         <div className="pt-6">
-          <Button asChild className="bg-gradient-to-r from-teal-500 to-blue-500 h-12 text-base border-0">
+          <Button
+            asChild
+            className="bg-gradient-to-r from-teal-500 to-blue-500 h-12 text-base border-0"
+          >
             <Link href="/" className="flex items-center gap-3">
               <Home className="w-4 h-4" />
               Go Home
@@ -78,20 +82,7 @@ export default function FeaturesPage() {
       </div>
 
       {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-indigo-400/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
-            }}
-          />
-        ))}
-      </div>
+      <FloatingParticles />
     </div>
   );
 }

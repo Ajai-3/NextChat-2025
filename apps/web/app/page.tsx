@@ -1,5 +1,5 @@
 // app/page.tsx
-"use client";
+// "use client";
 
 import React from "react";
 import Link from "next/link";
@@ -59,10 +59,10 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <Button variant="ghost" className="text-gray-300 hover:text-white">
-              Login
+              <Link href="/login">Login</Link>
             </Button>
             <Button className="bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 border-0">
-              Sign Up Free
+              <Link href="/signup">Sign Up Free</Link>
             </Button>
           </div>
         </div>
@@ -139,7 +139,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
 
       <section id="features" className="py-20 bg-black/50">
         <div className="max-w-7xl mx-auto px-6">

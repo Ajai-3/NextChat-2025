@@ -1,10 +1,11 @@
 // app/about/page.tsx
-"use client";
+// "use client";
 
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Home } from "lucide-react";
+import { FloatingParticles } from "@/components/floating-particles";
 
 export default function AboutPage() {
   return (
@@ -25,22 +26,28 @@ export default function AboutPage() {
           <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/10 to-blue-500/10 rounded-full blur-2xl -z-10"></div>
         </div>
 
-        
         <p className="text-gray-300 text-lg leading-relaxed">
-          <strong>NextChat</strong> is a modern communication platform built for communities, friends, and teams — 
-          inspired by the simplicity and power of Discord. Connect instantly with private chats, 
-          group servers, voice, and video calls — all powered by scalable, real-time technology.
+          <strong>NextChat</strong> is a modern communication platform built for
+          communities, friends, and teams — inspired by the simplicity and power
+          of Discord. Connect instantly with private chats, group servers,
+          voice, and video calls — all powered by scalable, real-time
+          technology.
         </p>
-        
+
         <p className="text-gray-300 text-lg leading-relaxed">
-          Our goal is to make conversations seamless and fun — 
-          with a focus on speed, privacy, and flexibility. Whether you're managing a project, gaming with friends, 
-          or building a community, <span className="text-teal-400 font-semibold">NextChat</span> has you covered.
+          Our goal is to make conversations seamless and fun — with a focus on
+          speed, privacy, and flexibility. Whether you're managing a project,
+          gaming with friends, or building a community,{" "}
+          <span className="text-teal-400 font-semibold">NextChat</span> has you
+          covered.
         </p>
 
         {/* Go Home Button */}
         <div className="pt-6">
-          <Button asChild className="bg-gradient-to-r from-teal-500 to-blue-500 h-12 text-base border-0">
+          <Button
+            asChild
+            className="bg-gradient-to-r from-teal-500 to-blue-500 h-12 text-base border-0"
+          >
             <Link href="/" className="flex items-center gap-3">
               <Home className="w-4 h-4" />
               Go Home
@@ -72,20 +79,7 @@ export default function AboutPage() {
       </div>
 
       {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-indigo-400/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`
-            }}
-          />
-        ))}
-      </div>
+      <FloatingParticles />
     </div>
   );
 }
