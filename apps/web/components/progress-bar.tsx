@@ -1,40 +1,40 @@
-// components/progress-bar.tsx
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
 
 export function ProgressBar() {
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition(); // React hook
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Start loading
+    if (!pathname) return;
+
+    // Start loader
     setIsVisible(true);
-    setProgress(10);
+    setProgress(20);
 
-    const timer1 = setTimeout(() => setProgress(30), 100);
-    const timer2 = setTimeout(() => setProgress(50), 200);
-    const timer3 = setTimeout(() => setProgress(70), 300);
-    const timer4 = setTimeout(() => setProgress(90), 400);
+    const interval = setInterval(() => {
+      setProgress((prev) => (prev < 90 ? prev + Math.random() * 5 : prev));
+    }, 100);
 
-    // Complete when route change is done
-    const completeTimer = setTimeout(() => {
+    // Complete loader after "navigation"
+    const timeout = setTimeout(() => {
       setProgress(100);
       setTimeout(() => {
         setIsVisible(false);
         setProgress(0);
       }, 200);
-    }, 600);
+    }, 800); // simulate realistic load
 
     return () => {
-      [timer1, timer2, timer3, timer4, completeTimer].forEach(clearTimeout);
-      setIsVisible(false);
-      setProgress(0);
+      clearInterval(interval);
+      clearTimeout(timeout);
     };
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   if (!isVisible) return null;
 
@@ -44,9 +44,8 @@ export function ProgressBar() {
         className="h-full bg-gradient-to-r from-teal-500 to-blue-500 transition-all duration-200 ease-out shadow-lg shadow-blue-500/50"
         style={{ width: `${progress}%` }}
       />
-      {/* Shimmer effect */}
       <div
-        className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-45 animate-shimmer"
+        className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 animate-shimmer"
         style={{ left: `${progress - 20}%` }}
       />
     </div>
